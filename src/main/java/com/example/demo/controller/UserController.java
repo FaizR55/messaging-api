@@ -1,12 +1,9 @@
 package com.example.demo.controller;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.repository.UserRepo;
 import com.example.demo.service.LoginService;
 import com.example.demo.repository.MessageRepo;
-import com.example.demo.entity.Message;
 import com.example.demo.entity.User;
 import com.example.demo.common.Response;
 
@@ -74,7 +69,7 @@ public class UserController {
                 .body(response);
 		}else {
 		response.setStatus("Gagal");
-		response.setMessage("Autentikasi salah");
+		response.setMessage("Autentikasi gagal");
 		response.setData("-");
 
 		return ResponseEntity
@@ -118,16 +113,6 @@ public class UserController {
 		List<String> auth = loginServ.login(email, password);
 
 		if (auth.get(0).equals("sukses")) {
-		// JSONArray inbox = new JSONArray(msgRepo.findMsg(name));
-		// Map<String, Object> msg = new HashMap<>();
-
-		// for (int i = 0; i < inbox.length(); i++) { 	
-		// 	JSONObject row = inbox.getJSONObject(i);
-		// 	 msg.put("id", row.getInt("id"));
-		// 	 msg.put("header", row.getString("header"));
-		// 	 msg.put("body", row.getString("body"));
-		// 	 msg.put("sender", row.getString("sender"));
-		// }  
 
 		response.setStatus("Sukses");
         response.setMessage("Inbox email anda :");
@@ -139,7 +124,7 @@ public class UserController {
                 .body(response);
 		}else {
 		response.setStatus("Gagal");
-		response.setMessage("Autentikasi salah");
+		response.setMessage("Autentikasi gagal");
 		response.setData("-");
 
 		return ResponseEntity
